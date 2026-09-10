@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI CAREER GUIDANCE</title>
+    <link rel="stylesheet" href="dtx.CSS">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>AI CAREER GUIDANCE</h1>
+    <label for="studentName">Student Name</label>
+    <input
+        type="text"
+        id="studentName"
+        placeholder="Enter your name"
+    >
+
+    
+    <label for="interest">Select Your Interest</label>
+
+    <select id="interest" onchange="showSkills()">
+
+        <option value="">-- Select Interest --</option>
+
+        <option value="web">
+            Web Technology
+        </option>
+
+        <option value="java">
+            Java Development
+        </option>
+
+        <option value="python">
+            Python Development
+        </option>
+
+        <option value="ai">
+            Artificial Intelligence
+        </option>
+
+        <option value="data">
+            Data Science
+        </option>
+
+        <option value="cyber">
+            Cyber Security
+        </option>
+
+    </select>
+
+
+    
+    <div id="skillsBox">
+
+        <h2>Rate Your Skills</h2>
+
+        <div id="skillsList"></div>
+
+        <button onclick="calculateResult()">
+            Submit Skill Rating
+        </button>
+
+    </div>
+
+
+    
+    <div class="result" id="result">
+
+        <h2>Your Result</h2>
+
+        <p id="studentResult"></p>
+
+        <p id="interestResult"></p>
+
+        <p id="averageResult"></p>
+
+        <p id="levelResult"></p>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+
+    const skillData = {
+
+        web: [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Bootstrap",
+            "React.js"
+        ],
+
+        java: [
+            "Java",
+            "OOP",
+            "Collections",
+            "JDBC",
+            "Spring Boot"
+        ],
+
+        python: [
+            "Python",
+            "OOP",
+            "Functions",
+            "Django",
+            "Flask"
+        ],
+
+        ai: [
+            "Python",
+            "Machine Learning",
+            "Deep Learning",
+            "NLP",
+            "TensorFlow"
+        ],
+
+        data: [
+            "Python",
+            "SQL",
+            "Statistics",
+            "Pandas",
+            "Machine Learning"
+        ],
+
+        cyber: [
+            "Networking",
+            "Linux",
+            "Ethical Hacking",
+            "Cryptography",
+            "Cyber Security"
+        ]
+
+    };
+
+    function showSkills() {
+
+        const interest =
+            document.getElementById("interest").value;
+
+        const skillsList =
+            document.getElementById("skillsList");
+
+        const skillsBox =
+            document.getElementById("skillsBox");
+
+
+        skillsList.innerHTML = "";
+
+
+        if (interest === "") {
+
+            skillsBox.style.display = "none";
+
+            return;
+        }
+
+        const skills = skillData[interest];
+
+
+        skills.forEach(function(skill, index) {
+
+            const div = document.createElement("div");
+
+            div.className = "skill";
+
+            div.innerHTML = `
+
+                <div class="skill-name">
+                    ${skill}
+                </div>
+
+                <select
+                    class="skill-rating"
+                    id="rating-${index}"
+                >
+
+                    <option value="0">
+                        Select Rating
+                    </option>
+
+                    <option value="1">
+                        1 - Beginner
+                    </option>
+
+                    <option value="2">
+                        2 - Basic
+                    </option>
+
+                    <option value="3">
+                        3 - Intermediate
+                    </option>
+
+                    <option value="4">
+                        4 - Advanced
+                    </option>
+
+                    <option value="5">
+                        5 - Expert
+                    </option>
+
+                </select>
+
+            `;
+
+            skillsList.appendChild(div);
+
+        });
+
+
+        skillsBox.style.display = "block";
+
+    }
+
+
+    function calculateResult() {
+
+        const name =
+            document.getElementById("studentName").value.trim();
+
+        const interest =
+            document.getElementById("interest").value;
+
+
+        if (name === "") {
+
+            alert("Please enter your name.");
+
+            return;
+        }
+
+
+        if (interest === "") {
+
+            alert("Please select your interest.");
+
+            return;
+        }
+
+
+        const ratings =
+            document.querySelectorAll(".skill-rating");
+
+
+        let total = 0;
+
+        let count = 0;
+
+        ratings.forEach(function(rating) {
+
+            const value =
+                Number(rating.value);
+
+
+            if (value === 0) {
+
+                alert("Please rate all skills.");
+
+                return;
+
+            }
+
+
+            total += value;
+
+            count++;
+
+        });
+
+
+        if (count !== ratings.length) {
+
+            return;
+
+        }
+
+
+        const average =
+            total / ratings.length;
+
+
+        let level;
+
+
+        if (average >= 4.5) {
+
+            level = "Expert";
+
+        }
+        else if (average >= 3.5) {
+
+            level = "Advanced";
+
+        }
+        else if (average >= 2.5) {
+
+            level = "Intermediate";
+
+        }
+        else if (average >= 1.5) {
+
+            level = "Basic";
+
+        }
+        else {
+
+            level = "Beginner";
+
+        }
+
+
+        const interestName =
+            document.getElementById("interest")
+            .options[
+                document.getElementById("interest").selectedIndex
+            ].text;
+
+
+        document.getElementById("studentResult").innerHTML =
+            "<strong>Student:</strong> " + name;
+
+
+        document.getElementById("interestResult").innerHTML =
+            "<strong>Interest:</strong> " + interestName;
+
+
+        document.getElementById("averageResult").innerHTML =
+            "<strong>Average Skill Rating:</strong> "
+            + average.toFixed(2)
+            + " / 5";
+
+
+        document.getElementById("levelResult").innerHTML =
+            "<strong>Skill Level:</strong> "
+            + level;
+
+
+        document.getElementById("result").style.display =
+            "block";
+
+    }
+
+</script>
+
+</body>
+</html>
