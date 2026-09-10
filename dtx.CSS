@@ -1,0 +1,685 @@
+<style>
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(89, 45, 180, 0.18),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(0, 170, 220, 0.12),
+            transparent 30%
+        ),
+        #0b1428;
+
+    color: #ffffff;
+
+    padding: 0;
+}
+
+
+/* =====================================================
+   MAIN CONTAINER
+===================================================== */
+
+.container {
+    width: calc(100% - 18px);
+    max-width: 1250px;
+
+    margin: 0 auto;
+
+    min-height: 100vh;
+
+    padding: 28px 44px 45px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(20, 27, 50, 0.97),
+            rgba(12, 24, 42, 0.97)
+        );
+
+    border-left: 1px solid rgba(255, 255, 255, 0.10);
+    border-right: 1px solid rgba(255, 255, 255, 0.10);
+
+    box-shadow:
+        0 0 40px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =====================================================
+   MAIN HEADINGS
+===================================================== */
+
+h1 {
+    color: #ffffff;
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 35px;
+}
+
+h2 {
+    color: #f5f5ff;
+}
+
+
+/* =====================================================
+   SECTION HEADINGS
+===================================================== */
+
+.section-title,
+.container h2 {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    font-size: 25px;
+
+    margin-top: 28px;
+    margin-bottom: 22px;
+
+    color: #f5f5f5;
+}
+
+
+/* =====================================================
+   ICON BOX
+   Example:
+   👤 Personal Information
+   💼 Select Your Interest
+   📈 Rate Your Skills
+===================================================== */
+
+.section-icon,
+.icon-box {
+    width: 44px;
+    height: 44px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #713cff,
+            #168db9
+        );
+
+    font-size: 22px;
+
+    box-shadow:
+        0 8px 20px rgba(88, 60, 255, 0.25);
+}
+
+
+/* =====================================================
+   PERSONAL INFORMATION INPUT
+===================================================== */
+
+label {
+    display: block;
+
+    color: #e4e7f0;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"] {
+    width: 100%;
+
+    height: 62px;
+
+    padding: 0 23px;
+
+    border-radius: 17px;
+
+    border: 1px solid #536078;
+
+    outline: none;
+
+    background: #e7eefb;
+
+    color: #101827;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 18px;
+
+    transition: 0.3s ease;
+}
+
+input::placeholder {
+    color: #202b3d;
+}
+
+input:focus {
+    border-color: #7d4cff;
+
+    box-shadow:
+        0 0 0 3px rgba(125, 76, 255, 0.20);
+}
+
+
+/* =====================================================
+   INTEREST GRID
+===================================================== */
+
+.interest-container,
+.interest-grid,
+#interestGrid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 14px;
+
+    margin-top: 10px;
+}
+
+
+/* =====================================================
+   INTEREST CARD
+===================================================== */
+
+.interest-card {
+    min-height: 126px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 18px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(5, 12, 30, 0.75);
+
+    border: 1px solid #33415b;
+
+    color: #d8dce7;
+
+    cursor: pointer;
+
+    text-align: center;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* Interest card icon */
+
+.interest-card .icon,
+.interest-card i,
+.interest-card span:first-child {
+    font-size: 33px;
+}
+
+
+/* Interest card text */
+
+.interest-card h3,
+.interest-card p,
+.interest-card span {
+    font-size: 18px;
+
+    font-weight: 600;
+}
+
+
+/* Hover */
+
+.interest-card:hover {
+    transform: translateY(-4px);
+
+    border-color: #764cff;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(80, 43, 170, 0.35),
+            rgba(0, 125, 170, 0.25)
+        );
+
+    box-shadow:
+        0 10px 30px rgba(80, 50, 200, 0.25);
+}
+
+
+/* Selected card */
+
+.interest-card.selected,
+.interest-card.active {
+    border: 1px solid #974cff;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(85, 42, 180, 0.60),
+            rgba(0, 130, 170, 0.50)
+        );
+
+    box-shadow:
+        0 0 25px rgba(116, 72, 255, 0.25);
+
+    transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   NORMAL SELECT
+===================================================== */
+
+select {
+    width: 100%;
+
+    padding: 14px 18px;
+
+    border-radius: 12px;
+
+    border: 1px solid #394861;
+
+    background: #111b31;
+
+    color: #ffffff;
+
+    font-size: 16px;
+
+    outline: none;
+
+    cursor: pointer;
+}
+
+select:focus {
+    border-color: #794cff;
+
+    box-shadow:
+        0 0 0 3px rgba(121, 76, 255, 0.15);
+}
+
+select option {
+    background: #101a2e;
+    color: #ffffff;
+}
+
+
+/* =====================================================
+   SKILL SECTION
+===================================================== */
+
+#skillsBox {
+    margin-top: 35px;
+
+    padding: 0;
+
+    background: transparent;
+
+    border: none;
+}
+
+
+/* =====================================================
+   INDIVIDUAL SKILL
+===================================================== */
+
+.skill {
+    margin-bottom: 27px;
+
+    position: relative;
+}
+
+
+/* Skill name */
+
+.skill-name {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+
+    color: #d9dce5;
+
+    font-size: 18px;
+
+    font-weight: 600;
+}
+
+
+/* Skill rating number */
+
+.skill-value {
+    color: #55e8ff;
+
+    font-size: 17px;
+
+    font-weight: bold;
+}
+
+
+/* =====================================================
+   RANGE SLIDER
+===================================================== */
+
+input[type="range"] {
+    width: 100%;
+
+    height: 9px;
+
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    border-radius: 20px;
+
+    outline: none;
+
+    background: #344258;
+
+    cursor: pointer;
+}
+
+
+/* Chrome / Edge / Safari */
+
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    width: 27px;
+    height: 27px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7650ff,
+            #00c7df
+        );
+
+    border: none;
+
+    box-shadow:
+        0 0 10px rgba(0, 205, 255, 0.55),
+        0 0 20px rgba(95, 70, 255, 0.35);
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+/* Firefox */
+
+input[type="range"]::-moz-range-thumb {
+    width: 27px;
+    height: 27px;
+
+    border-radius: 50%;
+
+    border: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7650ff,
+            #00c7df
+        );
+
+    box-shadow:
+        0 0 10px rgba(0, 205, 255, 0.55);
+
+    cursor: pointer;
+}
+
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+
+    box-shadow:
+        0 0 15px rgba(0, 210, 255, 0.8),
+        0 0 25px rgba(115, 70, 255, 0.5);
+}
+
+
+/* =====================================================
+   GENERATE BUTTON
+===================================================== */
+
+button {
+    width: 100%;
+
+    min-height: 58px;
+
+    margin-top: 18px;
+
+    padding: 15px 25px;
+
+    border: none;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #823cff,
+            #5754e8,
+            #079bc1
+        );
+
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 25px rgba(73, 82, 230, 0.35);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        filter 0.25s ease;
+}
+
+
+button:hover {
+    transform: translateY(-3px);
+
+    filter: brightness(1.12);
+
+    box-shadow:
+        0 12px 35px rgba(65, 90, 255, 0.50);
+}
+
+
+button:active {
+    transform: translateY(0);
+}
+
+
+/* =====================================================
+   RESULT
+===================================================== */
+
+.result {
+    margin-top: 30px;
+
+    padding: 25px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(17, 31, 52, 0.90);
+
+    border: 1px solid #40506b;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.25);
+
+    animation: resultShow 0.5s ease;
+}
+
+
+.result h2 {
+    color: #ffffff;
+
+    margin-bottom: 20px;
+
+    font-size: 25px;
+}
+
+
+.result p {
+    padding: 12px 15px;
+
+    margin: 8px 0;
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    color: #dce2ed;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 16px;
+}
+
+
+@keyframes resultShow {
+
+    from {
+        opacity: 0;
+
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+/* =====================================================
+   MOBILE RESPONSIVE
+===================================================== */
+
+@media screen and (max-width: 900px) {
+
+    .interest-container,
+    .interest-grid,
+    #interestGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .container {
+        padding: 25px 25px 40px;
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+
+    body {
+        padding: 0;
+    }
+
+    .container {
+        width: 100%;
+
+        padding: 22px 16px;
+
+        border-radius: 0;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .container h2 {
+        font-size: 21px;
+    }
+
+    .interest-container,
+    .interest-grid,
+    #interestGrid {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 10px;
+    }
+
+    .interest-card {
+        min-height: 110px;
+
+        padding: 12px;
+    }
+
+    .interest-card .icon,
+    .interest-card i,
+    .interest-card span:first-child {
+        font-size: 27px;
+    }
+
+    .interest-card h3,
+    .interest-card p,
+    .interest-card span {
+        font-size: 15px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"] {
+        height: 55px;
+    }
+
+    button {
+        font-size: 17px;
+    }
+}
+
+</style>
